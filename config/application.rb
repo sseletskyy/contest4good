@@ -56,3 +56,5 @@ module Contest4good
 
   end
 end
+
+require 'contest4good' # to load global constants
