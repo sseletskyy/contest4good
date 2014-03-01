@@ -6,8 +6,8 @@ module Contest4good
   ROLE_JURY_HEAD = 'jury_head'.freeze   # glava juri
   ROLE_JURY_JUDGE = 'jury_judge'.freeze # chlen juri
 
-  ROLE_USER = 'user'.freeze             # uchastnik olimpiady
+  #ROLE_USER = 'user'.freeze             # uchastnik olimpiady
 
-  ROLES = [ROLE_ADMIN, ROLE_COMMITTEE_HEAD, ROLE_COMMITTEE_VICE, ROLE_JURY_HEAD, ROLE_JURY_JUDGE, ROLE_USER].freeze
+  ROLES = [ROLE_ADMIN, ROLE_COMMITTEE_HEAD, ROLE_COMMITTEE_VICE, ROLE_JURY_HEAD, ROLE_JURY_JUDGE].freeze
 
 end

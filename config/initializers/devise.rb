@@ -83,7 +83,7 @@ Devise.setup do |config|
   # may want to disable generating routes to Devise's sessions controller by
   # passing :skip => :sessions to `devise_for` in your config/routes.rb
   config.skip_session_storage = [:http_auth, :token_auth]
-  config.token_authentication_key = :auth_token
+  #config.token_authentication_key = :auth_token
 
 
   # By default, Devise cleans up the CSRF token on authentication to

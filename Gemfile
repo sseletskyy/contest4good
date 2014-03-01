@@ -6,6 +6,7 @@ gem 'pg' # postgres
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.1.1'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -37,8 +38,10 @@ gem 'nokogiri'  # is an HTML, XML, SAX, and Reader parser. Among Nokogiri's many
 gem 'json'
 gem 'protected_attributes'
 gem 'slim-rails'
-gem "kaminari", "~> 0.14.1" # pagination
 gem 'workflow', git: 'https://github.com/geekq/workflow'
+
+gem "kaminari", "~> 0.14.1" # pagination
+gem 'bootstrap-kaminari-views'
 
 
 group :doc do

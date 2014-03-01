@@ -1,4 +1,4 @@
-en:
+'uk-UA':
   devise:
     invitations:
       send_instructions: 'An invitation email has been sent to %{email}.'
@@ -16,4 +16,4 @@ en:
       invitation_instructions:
         subject: 'Invitation instructions'
   menu:
-    home: Home
+    home: Головна

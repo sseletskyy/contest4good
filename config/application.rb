@@ -19,7 +19,7 @@ module Contest4good
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'Kyiv'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
@@ -40,9 +40,10 @@ module Contest4good
       #Devise::InvitationsController.layout proc { |controller| action_name == 'accept' ? "login" : "application" }
     end
 
+    I18n.config.enforce_available_locales = true
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = :ru
-    config.i18n.available_locales = [:en, :ru]
+    config.i18n.default_locale = 'uk-UA'
+    config.i18n.available_locales = [:en, :ru, 'uk-UA']
     config.active_record.time_zone_aware_attributes = false
 
     config.active_record.schema_format = :ruby

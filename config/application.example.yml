@@ -1,4 +1,5 @@
-ADMIN_NAME: First User
+ADMIN_FIRST_NAME: First
+ADMIN_LAST_NAME: User
 ADMIN_EMAIL: user@example.com
 ADMIN_PASSWORD: changeme
 

@@ -5,12 +5,16 @@ nav.navbar.navbar-default role="navigation"
       span.icon-bar
       span.icon-bar
       span.icon-bar
-    = link_to app_title, root_path, class:'navbar-brand'
+    = link_to root_path, class:'navbar-brand' do
+      i.glyphicon.glyphicon-question-sign
+      '
+      = app_title
+
   .collapse.navbar-collapse.navbar-ex1-collapse
     ul.nav.navbar-nav
       /li.active
       li
-        = link_to 'Home', root_path
+        = link_to t('menu.home'), root_path
     ul.nav.navbar-nav.navbar-right
       li.dropdown
         a.dropdown-toggle data-toggle="dropdown" href="#"

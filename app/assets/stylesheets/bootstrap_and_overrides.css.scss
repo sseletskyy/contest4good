@@ -1,0 +1,67 @@
+//@import "bootstrap";
+
+//body { padding-top: 60px; }
+//select.datetime {
+//  width: 100px;
+//}
+
+//@import "bootstrap-responsive";
+
+@media (min-width: 768px) {
+  .modal.wide {
+    .modal-dialog {
+      width: 750px !important;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal.wide {
+    .modal-dialog {
+      width: 1000px !important;
+    }
+  }
+}
+
+.glyphicon {
+  margin-right: 6px;
+}
+.label {
+  padding-right: 1.6em;
+  padding-left: 1.6em;
+  cursor: pointer;
+}
+
+.double-height {
+  line-height: 200%;
+  margin-bottom: 5px;
+}
+
+.btn-info:visited {
+  color: #EEEEEE !important;
+}
+
+.default-cursor {
+  cursor: default !important;
+}
+
+.filter-panel {
+  background-color: #FFFCB8;
+  padding: 5px;
+  border-color: darkgray;
+  border-width: 1px;
+  border-style: solid;
+
+  .table {
+    background-color: white;
+  }
+}
+
+.navbar-brand {
+  padding: 12px 15px;
+  font-size: 17px;
+  i {
+    position: relative;
+    top: 3px;
+  }
+}
