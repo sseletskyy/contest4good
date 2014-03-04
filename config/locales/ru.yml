@@ -1,0 +1,105 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: Электронный адрес пустой
+              invalid: Неправильный электронный адрес
+            password:
+              blank: Пароль пустой
+    models:
+      role: роль
+      user: абитуриент
+
+    attributes:
+      role:
+        name: имя роли
+        resource: :activerecord.models.resource
+        resource_type: resource_type  #g
+        users: абитуриенты
+
+      user:
+        confirmation_sent_at: confirmation_sent_at  #g
+        confirmation_token: confirmation_token  #g
+        confirmed_at: confirmed_at  #g
+        current_sign_in_at: current_sign_in_at  #g
+        current_sign_in_ip: current_sign_in_ip  #g
+        email: эл. ящик  #g
+        encrypted_password: encrypted_password  #g
+        failed_attempts: failed_attempts  #g
+        invitation_accepted_at: invitation_accepted_at  #g
+        invitation_created_at: invitation_created_at  #g
+        invitation_limit: invitation_limit  #g
+        invitation_sent_at: invitation_sent_at  #g
+        invitation_token: invitation_token  #g
+        invited_by: :activerecord.models.invited_by  #g
+        invited_by_type: invited_by_type  #g
+        last_sign_in_at: last_sign_in_at  #g
+        last_sign_in_ip: last_sign_in_ip  #g
+        locked_at: locked_at  #g
+        remember_created_at: remember_created_at  #g
+        reset_password_sent_at: reset_password_sent_at  #g
+        reset_password_token: reset_password_token  #g
+        roles: roles  #g
+        unlock_token: unlock_token  #g
+  devise:
+    invitations:
+      send_instructions: 'Пригласительноe письмо было отправлено по адресу %{email}.'
+      invitation_token_invalid: 'Пригласительный ключ неверный!'
+      updated: 'Вы успешно зарегистрировались. Теперь вы авторизованы в системе.'
+      no_invitations_remaining: "Приглашение не осталось"
+      invitation_removed: 'Ваше приглашение было удалено.'
+      new:
+        header: "Оформление приглашения"
+        submit_button: "Отправить приглашение"
+      edit:
+        header: "Заполните форму регистрации"
+        submit_button: "Зарегистрироваться"
+    mailer:
+      invitation_instructions:
+        subject: 'Пригласительная инструкция'
+  menu:
+    home: Главная
+    sign_up: Регистрация
+  shared:
+    back: Назад
+    please_wait: Подождите
+  users:
+    form:
+      submit: Отправить приглашение
+    mailer:
+      invitation_instructions:
+        you_requested_registration_at: Вы запросили регистрацию на сайте %{url}. Чтобы завершить регистрацию нажмите на ссылку ниже.
+        welcome: Здравствуйте, %{email}
+        accept_registration: Подтвердить регистрацию
+        if_you_dont_want_to_accept: Если вы не хотите регистрироваться, или вы не запрашивали регистрацию, то просто проигнорируйте это письмо
+        until_you_access_link: Ваша регистрация не будет создана до тех пор, пока вы не перейдете по ссылке и не заполните форму регистрации.
+    new:
+      title: Регистрация
+    notices:
+      create: Приглашение выслано на почту
+  simple_form:
+    "yes": 'Да'
+    "no": 'Нет'
+    required:
+      text: 'обязательно'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Просмотрите проблемы ниже:"
+    labels:
+       defaults:
+         password: 'Пароль'
+       user:
+         new:
+           email: 'Эл. ящик для авторизации'
+         edit:
+           email: 'Эл. ящик'
+    hints:
+       defaults:
+         username: 'Имя для авторизации'
+         password: 'Пожалуйста, без спец. символов'

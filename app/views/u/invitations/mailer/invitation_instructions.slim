@@ -1,0 +1,10 @@
+p
+  = t('.welcome', email: @resource.email)
+p
+  = t('.you_requested_registration_at', url: root_url)
+p
+  = link_to t('.accept_registration'), accept_invitation_url(@resource, :invitation_token => @token)
+p
+  = t('.if_you_dont_want_to_accept')
+p
+  = t('.until_you_access_link')

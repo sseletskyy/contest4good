@@ -16,6 +16,8 @@ nav.navbar.navbar-default role="navigation"
       li
         = link_to t('menu.home'), root_path
     ul.nav.navbar-nav.navbar-right
+      li
+        = link_to t('menu.sign_up'), new_user_invitation_path
       li.dropdown
         a.dropdown-toggle data-toggle="dropdown" href="#"
           span.user-info

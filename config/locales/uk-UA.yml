@@ -1,4 +1,4 @@
-'uk-UA':
+uk-UA:
   devise:
     invitations:
       send_instructions: 'An invitation email has been sent to %{email}.'
@@ -17,3 +17,12 @@
         subject: 'Invitation instructions'
   menu:
     home: Головна
+    sign_up: Зареєструватись
+  shared:
+    back: Назад
+    please_wait: Зачекайте
+  users:
+    new:
+      title: Реєстрація
+      form:
+        submit: Відіслати запрошення
