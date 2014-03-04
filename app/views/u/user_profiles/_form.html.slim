@@ -1,0 +1,18 @@
+= simple_form_for(@user_profile) do |f|
+  = f.error_notification
+  .row
+    .col-sm-6
+          = f.association :user
+          = f.input :first_name
+          = f.input :middle_name
+          = f.input :last_name
+          = f.input :born_on
+          = f.input :address
+          = f.input :school
+          = f.input :grade
+          = f.input :phone
+          = f.input :parent_name
+          = f.input :parent_phone
+
+  .form-group
+    = f.button :submit, data: { disable_with: t('shared.please_wait')}

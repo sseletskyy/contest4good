@@ -5,6 +5,11 @@ Contest4good::Application.routes.draw do
              skip: [:registration, :password]
   resources :users, only: [:new, :create]
 
+  namespace :u do
+    resources :user_profiles
+  end
+
+
   get "home/index"
   root :to => "home#index"
 end
