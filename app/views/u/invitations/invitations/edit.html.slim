@@ -1,8 +1,24 @@
 h2
   = t 'devise.invitations.edit.header'
+  strong
+    | bla bla
+- resource.build_user_profile
 = simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f|
   = devise_error_messages!
   = f.hidden_field :invitation_token
   = f.input :password
   = f.input :password_confirmation
+  = f.simple_fields_for :user_profile do |s|
+    = s.input :first_name
+    = s.input :middle_name
+    = s.input :last_name
+    = s.input :born_on
+    = s.input :address
+    = s.input :school
+    = s.input :grade
+    = s.input :phone
+    = s.input :parent_name
+    = s.input :parent_phone
+
+
   = f.submit t("devise.invitations.edit.submit_button")

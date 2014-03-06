@@ -26,6 +26,7 @@
 .glyphicon {
   margin-right: 6px;
 }
+
 .label {
   padding-right: 1.6em;
   padding-left: 1.6em;
@@ -64,4 +65,18 @@
     position: relative;
     top: 3px;
   }
+}
+
+.checkbox.inline.no_indent,
+.checkbox.inline.no_indent + .checkbox.inline.no_indent {
+  margin-left: 0;
+  margin-right: 10px;
+  .boolean.form-control {
+    width: inherit;
+    height: inherit;
+  }
+}
+
+.checkbox.inline.no_indent:last-child {
+  margin-right: 0px;
 }

@@ -17,33 +17,46 @@ ru:
       role:
         name: имя роли
         resource: :activerecord.models.resource
-        resource_type: resource_type  #g
+        resource_type: resource_type
         users: абитуриенты
 
       user:
-        confirmation_sent_at: confirmation_sent_at  #g
-        confirmation_token: confirmation_token  #g
-        confirmed_at: confirmed_at  #g
-        current_sign_in_at: current_sign_in_at  #g
-        current_sign_in_ip: current_sign_in_ip  #g
-        email: эл. ящик  #g
-        encrypted_password: encrypted_password  #g
-        failed_attempts: failed_attempts  #g
-        invitation_accepted_at: invitation_accepted_at  #g
-        invitation_created_at: invitation_created_at  #g
-        invitation_limit: invitation_limit  #g
-        invitation_sent_at: invitation_sent_at  #g
-        invitation_token: invitation_token  #g
-        invited_by: :activerecord.models.invited_by  #g
-        invited_by_type: invited_by_type  #g
-        last_sign_in_at: last_sign_in_at  #g
-        last_sign_in_ip: last_sign_in_ip  #g
-        locked_at: locked_at  #g
-        remember_created_at: remember_created_at  #g
-        reset_password_sent_at: reset_password_sent_at  #g
-        reset_password_token: reset_password_token  #g
-        roles: roles  #g
-        unlock_token: unlock_token  #g
+        confirmation_sent_at: confirmation_sent_at
+        confirmation_token: confirmation_token
+        confirmed_at: confirmed_at
+        current_sign_in_at: current_sign_in_at
+        current_sign_in_ip: current_sign_in_ip
+        email: эл. ящик
+        encrypted_password: encrypted_password
+        failed_attempts: failed_attempts
+        invitation_accepted_at: invitation_accepted_at
+        invitation_created_at: invitation_created_at
+        invitation_limit: invitation_limit
+        invitation_sent_at: invitation_sent_at
+        invitation_token: invitation_token
+        invited_by: :activerecord.models.invited_by
+        invited_by_type: invited_by_type
+        last_sign_in_at: last_sign_in_at
+        last_sign_in_ip: last_sign_in_ip
+        locked_at: locked_at
+        remember_created_at: remember_created_at
+        reset_password_sent_at: reset_password_sent_at
+        reset_password_token: reset_password_token
+        roles: roles
+        unlock_token: unlock_token
+      user_profile:
+        address: Адрес
+        born_on: Дата рождения
+        first_name: Имя
+        grade: Класс
+        last_name: Фамилия
+        middle_name: Отчество
+        parent_name: ФИО родителя
+        parent_phone: Контактный телефон родителя
+        phone: Контактный телефон абитуриента
+        school: Школа
+        user: :activerecord.models.user
+        terms: Я согласен (согласна) с условиями пользовательского соглашения
   devise:
     invitations:
       send_instructions: 'Пригласительноe письмо было отправлено по адресу %{email}.'
@@ -60,6 +73,9 @@ ru:
     mailer:
       invitation_instructions:
         subject: 'Пригласительная инструкция'
+  errors:
+    messages:
+      not_saved: Форма не сохранена
   menu:
     home: Главная
     sign_up: Регистрация
@@ -92,13 +108,24 @@ ru:
     error_notification:
       default_message: "Просмотрите проблемы ниже:"
     labels:
-       defaults:
-         password: 'Пароль'
-       user:
-         new:
-           email: 'Эл. ящик для авторизации'
-         edit:
-           email: 'Эл. ящик'
+      defaults:
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+      user:
+        email: :activerecord.attributes.user.email
+      user_profile:
+        address: :activerecord.attributes.user_profile.address
+        born_on: :activerecord.attributes.user_profile.born_on
+        first_name: :activerecord.attributes.user_profile.first_name
+        grade: :activerecord.attributes.user_profile.grade
+        last_name: :activerecord.attributes.user_profile.last_name
+        middle_name: :activerecord.attributes.user_profile.middle_name
+        parent_name: :activerecord.attributes.user_profile.parent_name
+        parent_phone: :activerecord.attributes.user_profile.parent_phone
+        phone: :activerecord.attributes.user_profile.phone
+        school: :activerecord.attributes.user_profile.school
+        user: :activerecord.models.user
+        terms: :activerecord.attributes.user_profile.terms
     hints:
        defaults:
          username: 'Имя для авторизации'

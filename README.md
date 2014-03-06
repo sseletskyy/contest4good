@@ -50,3 +50,7 @@ Support devise invitable generator
 
 > create role contest4good with createdb login password 'contest4good';
 
+# Locales
+
+Generate activerecord translations
+> rails g i18n_translation ru
