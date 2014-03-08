@@ -10,9 +10,10 @@ class User < ActiveRecord::Base
                   :email
 
   has_one :user_profile
+  accepts_nested_attributes_for :user_profile
 
   CUSTOM_VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: User::CUSTOM_VALID_EMAIL_REGEX },uniqueness: true #{scope: :tenant_id}
+  validates :email, presence: true, format: {with: User::CUSTOM_VALID_EMAIL_REGEX}, uniqueness: true #{scope: :tenant_id}
   validates :password, length: {minimum: 6, maximum: 120}, on: :update, allow_blank: true
   validates :password, length: {minimum: 6, maximum: 120}, on: :create, allow_blank: true
 end

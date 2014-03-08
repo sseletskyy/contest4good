@@ -1,6 +1,5 @@
 h2
   = t 'devise.invitations.edit.header'
-- resource.build_user_profile
 = simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f|
   = devise_error_messages!
   = f.hidden_field :invitation_token
@@ -11,7 +10,11 @@ h2
         = s.input :last_name
         = s.input :first_name
         = s.input :middle_name
-        = s.input :born_on
+        = s.input :born_on, as: :date,
+                  start_year: Date.today.year - 20,
+                  end_year: Date.today.year - 12,
+                  discard_day: false,
+                  order: [:day, :month, :year]
         hr
         h3 Контакты
         = s.input :address
