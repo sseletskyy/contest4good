@@ -1,0 +1,38 @@
+doctype 5
+html(lang="en")
+  head
+    =render 'layouts/header'
+  body
+    = render 'layouts/u/menu'
+    .container
+      .main-container#main-container
+        .main-container-inner
+          .main-content
+            = render 'layouts/messages'
+            /#breadcrumbs.breadcrumbs
+              ul.breadcrumb
+                li
+                  i.glyphicon.glyphicon-home
+                  =link_to t('main_menu.home'),root_path
+                -@breadcrumb.each_with_index do |b,i|
+                  -unless b[:name].nil?
+                    li class=(i+1 == @breadcrumb.size ? 'active':'')
+                      -unless b[:url].empty?
+                        =link_to b[:name],b[:url]
+                      -else
+                        =b[:name]
+
+            .page-content
+              = yield
+    footer
+      hr
+      p.text-center
+        small
+          = link_to root_path do
+            /i.glyphicon.glyphicon-pen
+            ' &nbsp;#{app_title}
+    /!
+      | Javascripts
+      | \==================================================
+    /! Placed at the end of the document so the pages load faster
+    = yield(:page_javascript) if content_for?(:page_javascript)
