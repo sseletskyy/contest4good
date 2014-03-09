@@ -5,13 +5,14 @@ ru:
         user:
           attributes:
             email:
-              blank: Электронный адрес пустой
-              invalid: Неправильный электронный адрес
+              blank: пустой
+              invalid: неправильный
             password:
-              blank: Пароль пустой
+              blank: пустой
     models:
       role: роль
       user: абитуриент
+      user_profile: профиль
     attributes:
       role:
         name: имя роли
@@ -324,9 +325,19 @@ ru:
     mailer:
       invitation_instructions:
         subject: 'Пригласительная инструкция'
+    sessions:
+      user:
+        signed_in: Вы успешно вошли в систему
+        signed_out: Вы успешно вышли из системы
+    failure:
+      user:
+        invalid: Вы ввели неверную комбинацию почты и пароля
+        unauthenticated: У вас нет доступа к этому разделу
   menu:
     home: Главная
     sign_up: Регистрация
+    sign_out: Выйти
+    sign_in: Войти
   shared:
     back: Назад
     please_wait: Подождите
@@ -344,6 +355,22 @@ ru:
       title: Регистрация
     notices:
       create: Приглашение выслано на почту
+    sessions:
+      new:
+        sign_in: Вход в систему
+        submit: Войти
+  u:
+    user_profiles:
+      edit:
+        title: Редактирование профиля
+      form:
+        agreement: Пользовательское соглашение
+        main_info: Основная информация
+        contacts: Контакты
+        study_place: Место учебы
+        parent_info: Информация о родителе
+      notices:
+        update: Профиль успешно обновлен
   simple_form:
     "yes": 'Да'
     "no": 'Нет'
@@ -360,7 +387,7 @@ ru:
         password: Пароль
         password_confirmation: Подтверждение пароля
       user:
-        email: эл. ящик
+        email: Эл. ящик
         password: Пароль
         password_confirmation: Подтверждение пароля
       user_profile:

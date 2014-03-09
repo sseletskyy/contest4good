@@ -1,5 +1,4 @@
-class U::HomeController < ApplicationController
-  layout "u/application"
+class U::HomeController < U::ApplicationController
   def index
   end
 end

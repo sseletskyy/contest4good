@@ -11,12 +11,11 @@ describe "User Registration", :type => :feature do
     click_link "Регистрация"
     click_on I18n.t("devise.invitations.new.submit_button")
     expect(page).to have_content I18n.t("activerecord.errors.models.user.attributes.email.blank")
-
-    fill_in I18n.t("activerecord.attributes.user.email"), with: @wrong_email
+    fill_in I18n.t("simple_form.labels.user.email"), with: @wrong_email
     click_on I18n.t("devise.invitations.new.submit_button")
     expect(page).to have_content I18n.t("activerecord.errors.models.user.attributes.email.invalid")
 
-    fill_in I18n.t("activerecord.attributes.user.email"), with: @correct_email
+    fill_in I18n.t("simple_form.labels.user.email"), with: @correct_email
     click_on I18n.t("devise.invitations.new.submit_button")
     expect(page).to have_content I18n.t("devise.invitations.send_instructions", email: @correct_email)
 
@@ -115,8 +114,8 @@ describe "User Registration", :type => :feature do
 
     click_on I18n.t("devise.invitations.edit.submit_button")
     expect(page).to have_content I18n.t('devise.invitations.updated')
-    current_path.should == u_home_index_path
-    save_and_open_page
+    current_path.should == u_home_path
+    #save_and_open_page
 
   end
 

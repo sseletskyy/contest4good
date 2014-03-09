@@ -24,7 +24,7 @@ class U::InvitationsController < Devise::InvitationsController
         flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
         set_flash_message :notice, flash_message
         sign_in(resource_name, resource)
-        respond_with resource, :location => u_home_index_path
+        respond_with resource, :location => u_home_path
       rescue
         respond_with_navigational(resource) { render :edit }
       end

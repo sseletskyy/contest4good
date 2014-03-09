@@ -6,7 +6,7 @@ h2
   = f.simple_fields_for :user_profile do |s|
     .row
       .col-sm-6
-        h3 Основная информация
+        h3= t('u.user_profiles.form.main_info')
         = s.input :last_name
         = s.input :first_name
         = s.input :middle_name
@@ -16,19 +16,19 @@ h2
                   discard_day: false,
                   order: [:day, :month, :year]
         hr
-        h3 Контакты
+        h3= t('u.user_profiles.form.contacts')
         = s.input :address
         = s.input :phone
         hr
-        h3 Место учебы
+        h3= t('u.user_profiles.form.study_place')
         = s.input :school
         = s.input :grade
       .col-sm-6
-        h3 Информация про подителей
+        h3= t('u.user_profiles.form.parent_info')
         = s.input :parent_name
         = s.input :parent_phone
         hr
-        h3 Пользовательское соглашение
+        h3= t('u.user_profiles.form.agreement')
         pre.terms
           = render "users/terms"
         = s.label :terms, class: "checkbox inline no_indent" do
@@ -44,4 +44,4 @@ h2
 
 
   .form-group
-    = f.submit t("devise.invitations.edit.submit_button")
+    = f.submit t("devise.invitations.edit.submit_button"), data: { disable_with: t('shared.please_wait')}

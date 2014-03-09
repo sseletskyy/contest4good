@@ -32,7 +32,6 @@ describe User do
       user = User.create!(@attr)
       mail = user.invite!()
       mail.to_addrs.should eq([@attr[:email]])
-      p mail.body.inspect
     end
   end
 end

@@ -8,22 +8,6 @@ module ControllerMacros
     end
   end
 
-  def login_admin_in_tenant
-    before(:each) do
-      @request.env['devise.mapping'] = Devise.mappings[:admin]
-      sign_in FactoryGirl.create(:user_in_tenant) # Using factory girl as an example
-    end
-  end
-
-  def login_user_in_tenant
-    before(:each) do
-      @request.env['devise.mapping'] = Devise.mappings[:user]
-      user = FactoryGirl.create(:user_in_tenant)
-      user.accept_invitation! #
-      sign_in user
-    end
-  end
-
   def login_user
     before(:each) do
       @request.env['devise.mapping'] = Devise.mappings[:user]

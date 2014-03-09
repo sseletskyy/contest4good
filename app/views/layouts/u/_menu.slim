@@ -5,7 +5,7 @@ nav.navbar.navbar-default role="navigation"
       span.icon-bar
       span.icon-bar
       span.icon-bar
-    = link_to u_home_index_path, class:'navbar-brand' do
+    = link_to u_home_path, class:'navbar-brand' do
       i.glyphicon.glyphicon-question-sign
       '
       = app_title
@@ -14,7 +14,7 @@ nav.navbar.navbar-default role="navigation"
     ul.nav.navbar-nav
       /li.active
       li
-        = link_to t('menu.home'), u_home_index_path
+        = link_to t('menu.home'), u_home_path
     ul.nav.navbar-nav.navbar-right
       li.dropdown
         a.dropdown-toggle data-toggle="dropdown" href="#"
@@ -25,9 +25,8 @@ nav.navbar.navbar-default role="navigation"
         ul.dropdown-menu
           li
             = link_to edit_u_user_profile_path(current_user) do
-              span= 'Profile'
+              span= t('activerecord.models.user_profile')
           li.divider
           li.logout
-            -#= link_to '<i class="icon-off"></i> Logout'.html_safe, destroy_user_session_path, method: :delete
-            = button_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn width-100 btn btn-sm btn-primary'
+            = link_to "<i class=\"icon-off\"></i> #{t('menu.sign_out')}".html_safe, destroy_user_session_path, method: :get
   /! /.navbar-collapse
