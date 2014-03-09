@@ -14,7 +14,7 @@ describe "User", :type => :feature do
 
     click_on I18n.t('users.sessions.new.submit')
     current_path.should == new_user_session_path
-    expect(page).to have_content I18n.t('devise.failure.user.invalid')
+    expect(page).to have_content I18n.t('devise.failure.invalid')
 
     ### set valid password
     fill_in I18n.t("simple_form.labels.user.password"), with: user.password
@@ -39,7 +39,7 @@ describe "User", :type => :feature do
   it 'should not have access to u_home if not authorized' do
     visit u_home_path
     current_path.should == new_user_session_path
-    expect(page).to have_content I18n.t('devise.failure.user.unauthenticated')
+    expect(page).to have_content I18n.t('devise.failure.unauthenticated')
   end
 
   it 'should have access to root if not authorized' do

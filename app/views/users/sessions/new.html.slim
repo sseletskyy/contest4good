@@ -1,9 +1,12 @@
 h2= t('.sign_in')
 = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  .form-inputs
-    = f.input :email, :required => false, :autofocus => true
-    = f.input :password, :required => false
-    = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+  = f.input :email, :required => false, :autofocus => true
+  = f.input :password, :required => false
+  .checkbox
+    label
+      = f.check_box :remember_me, :as => :boolean if devise_mapping.rememberable?
+      = f.label :remember_me
   .form-actions
     = f.button :submit, t('.submit')
+hr
 = render "users/shared/links"

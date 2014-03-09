@@ -41,6 +41,7 @@ ru:
         password: Пароль
         password_confirmation: Подтверждение пароля
         remember_created_at: remember_created_at
+        remember_me: Запомнить меня
         reset_password_sent_at: reset_password_sent_at
         reset_password_token: reset_password_token
         roles: roles
@@ -89,10 +90,13 @@ ru:
     - четверг
     - пятница
     - суббота
+    datepicker:
+      default: '%d.%m.%Y'
+      long: '%d %M, %Y'
     formats:
-      default: ! '%d.%m.%Y'
-      long: ! '%-d %B %Y'
-      short: ! '%-d %b'
+      default: '%d.%m.%Y'
+      long: '%-d %B %Y'
+      short: '%-d %b'
     month_names:
     -
     - января
@@ -330,9 +334,15 @@ ru:
         signed_in: Вы успешно вошли в систему
         signed_out: Вы успешно вышли из системы
     failure:
-      user:
-        invalid: Вы ввели неверную комбинацию почты и пароля
-        unauthenticated: У вас нет доступа к этому разделу
+      already_authenticated: Вы уже вошли в систему
+      inactive: Ваша учетная запись еще не активирована
+      invalid: Неверные почта или пароль
+      locked: Ваша учетная запись заблокирована
+      last_attempt: У вас осталась еще одна попытка перед тем как ваша учетная запись будет заблокирована
+      not_found_in_database: Неверные почта или пароль
+      timeout: Ваша сессия истекла. Пожалуйста, войдите снова чтобы продолжить
+      unauthenticated: У вас нет доступа к этому разделу. Попробуйте зарегистрироваться или войти под вашей учетной записью
+      unconfirmed: Вам необходимо подтвердить вашу учетную запись прежде чем продолжить
   menu:
     home: Главная
     sign_up: Регистрация

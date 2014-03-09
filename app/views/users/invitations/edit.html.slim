@@ -33,8 +33,7 @@ h2
           = render "users/terms"
         = s.label :terms, class: "checkbox inline no_indent" do
           = s.input_field :terms, as: :boolean, checked_value: true, unchecked_value: false
-          ' *
-          = t('activerecord.attributes.user_profile.terms')
+          = s.label :terms
 
   .row
     .col-sm-6
