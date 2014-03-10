@@ -1,2 +1,11 @@
-h1 A::Home#index
-p Find me in app/views/a/home/index.html.slim
+h1= t('.title')
+.row
+  .col-sm-3
+    ul.nav.nav-stacked
+      li
+        = link_to t('.create_contest'), new_a_contest_path
+      li
+        = link_to t('.contests'), a_contests_path
+
+  .col-sm-9
+    h3= t('a.admin_profiles.form.main_info')

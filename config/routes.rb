@@ -1,4 +1,5 @@
 Contest4good::Application.routes.draw do
+
   devise_for :admins,
              :controllers => {:sessions => "a/sessions", :invitations => "a/invitations"},
              :path => 'a',
@@ -19,6 +20,7 @@ Contest4good::Application.routes.draw do
   namespace :a do
     resource :admin_profile, :controller => "admin_profiles", only: [:edit, :update, :show]
     get '/', to: 'home#index', as: 'home'
+    resources :contests
   end
 
 

@@ -1,0 +1,2 @@
+module A::ContestsHelper
+end

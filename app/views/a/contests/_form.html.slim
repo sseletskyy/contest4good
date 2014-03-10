@@ -1,0 +1,11 @@
+= simple_form_for(@contest, url: a_contests_path(@contest)) do |f|
+  = f.error_notification
+  .row
+    .col-sm-6
+          = f.input :name
+          = f.input :starts_at
+          = f.input :ends_at
+          = f.input :regulations
+
+  .form-group
+    = f.button :submit, data: { disable_with: t('shared.please_wait')}

@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @contest.name
+p
+  strong Starts at:
+  = @contest.starts_at
+p
+  strong Ends at:
+  = @contest.ends_at
+p
+  strong Regulations:
+  = @contest.regulations
+
+= link_to 'Edit', edit_a_contest_path(@contest)
+'|
+= link_to 'Back', a_contests_path

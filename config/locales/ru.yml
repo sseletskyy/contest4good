@@ -9,6 +9,8 @@ ru:
               invalid: неправильный
             password:
               blank: пустой
+            role_ids:
+              blank: пустые
         user:
           attributes:
             email:
@@ -19,6 +21,7 @@ ru:
     models:
       admin: администратор
       admin_profile: профиль
+      contest: Конкурс
       role: роль
       user: абитуриент
       user_profile: профиль
@@ -48,7 +51,8 @@ ru:
         remember_me: Запомнить меня
         reset_password_sent_at: reset_password_sent_at
         reset_password_token: reset_password_token
-        roles: роли
+        roles: Роли
+        role_ids: Роли
         unlock_token: unlock_token
       admin_profile:
         first_name: Имя
@@ -86,7 +90,6 @@ ru:
         remember_me: Запомнить меня
         reset_password_sent_at: reset_password_sent_at
         reset_password_token: reset_password_token
-        roles: роли
         unlock_token: unlock_token
       user_profile:
         address: Адрес
@@ -424,6 +427,17 @@ ru:
         main_info: Основная информация
       notices:
         update: Профиль успешно обновлен
+    home:
+      index:
+        title: Главная страница админ панели
+        create_contest: Создать новый конкурс
+        contests: Список конкурсов
+    contests:
+      new:
+        title: Новый конкурс
+      notices:
+        create: Конкурс создан
+        update: Конкурс обновлен
   users:
     form:
       submit: Отправить приглашение
@@ -473,12 +487,18 @@ ru:
         email: Эл. ящик
         password: Пароль
         password_confirmation: Подтверждение пароля
+        role_ids: Роли
       admin_profile:
         first_name: Имя
         last_name: Фамилия
         middle_name: Отчество
         phone: Контактный телефон
         admin: :activerecord.models.admin
+      contest:
+        name: Название
+        starts_at: Начинается в
+        ends_at: Заканчивается в
+        regulations: Положения
       user:
         email: Эл. ящик
         password: Пароль
@@ -500,3 +520,12 @@ ru:
        defaults:
          username: 'Имя для авторизации'
          password: 'Пожалуйста, без спец. символов'
+    options:
+      admin:
+        roles:
+          admin: Администратор
+          teacher: Преподаватель
+          committee_head: Глава орг. комитета
+          committee_vice: Заместитель главы орг. комитета
+          jury_head: Глава жюри
+          jury_judge: Член жюри
