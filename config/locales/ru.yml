@@ -2,6 +2,13 @@ ru:
   activerecord:
     errors:
       models:
+        admin:
+          attributes:
+            email:
+              blank: пустой
+              invalid: неправильный
+            password:
+              blank: пустой
         user:
           attributes:
             email:
@@ -10,10 +17,45 @@ ru:
             password:
               blank: пустой
     models:
+      admin: администратор
+      admin_profile: профиль
       role: роль
       user: абитуриент
       user_profile: профиль
     attributes:
+      admin:
+        confirmation_sent_at: confirmation_sent_at
+        confirmation_token: confirmation_token
+        confirmed_at: confirmed_at
+        current_sign_in_at: current_sign_in_at
+        current_sign_in_ip: current_sign_in_ip
+        email: эл. ящик
+        encrypted_password: encrypted_password
+        failed_attempts: failed_attempts
+        invitation_accepted_at: invitation_accepted_at
+        invitation_created_at: invitation_created_at
+        invitation_limit: invitation_limit
+        invitation_sent_at: invitation_sent_at
+        invitation_token: invitation_token
+        invited_by: :activerecord.models.invited_by
+        invited_by_type: invited_by_type
+        last_sign_in_at: last_sign_in_at
+        last_sign_in_ip: last_sign_in_ip
+        locked_at: locked_at
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        remember_created_at: remember_created_at
+        remember_me: Запомнить меня
+        reset_password_sent_at: reset_password_sent_at
+        reset_password_token: reset_password_token
+        roles: роли
+        unlock_token: unlock_token
+      admin_profile:
+        first_name: Имя
+        last_name: Фамилия
+        middle_name: Отчество
+        phone: Контактный телефон абитуриента
+        admin: :activerecord.models.admin
       role:
         name: имя роли
         resource: :activerecord.models.resource
@@ -44,7 +86,7 @@ ru:
         remember_me: Запомнить меня
         reset_password_sent_at: reset_password_sent_at
         reset_password_token: reset_password_token
-        roles: roles
+        roles: роли
         unlock_token: unlock_token
       user_profile:
         address: Адрес
@@ -330,6 +372,9 @@ ru:
       invitation_instructions:
         subject: 'Пригласительная инструкция'
     sessions:
+      admin:
+        signed_in: Вы успешно вошли в раздел для администраторов
+        signed_out: Вы успешно вышли из раздела для администраторов
       user:
         signed_in: Вы успешно вошли в систему
         signed_out: Вы успешно вышли из системы
@@ -347,10 +392,38 @@ ru:
     home: Главная
     sign_up: Регистрация
     sign_out: Выйти
+    admin_sign_in: Войти админом
     sign_in: Войти
+    invite: Пригласить
   shared:
     back: Назад
     please_wait: Подождите
+  admins:
+    form:
+      submit: Отправить приглашение
+    mailer:
+      invitation_instructions:
+        you_requested_registration_at: Вам выслали приглашение в раздел для администраторов сайта %{url}. Чтобы завершить регистрацию нажмите на ссылку ниже.
+        welcome: Здравствуйте, %{email}
+        accept_registration: Подтвердить регистрацию
+        if_you_dont_want_to_accept: Если вы не хотите регистрироваться, то просто проигнорируйте это письмо
+        until_you_access_link: Ваша регистрация не будет создана до тех пор, пока вы не перейдете по ссылке и не заполните форму регистрации.
+    new:
+      title: Регистрация
+    notices:
+      create: Приглашение выслано на почту
+    sessions:
+      new:
+        sign_in: Вход в систему для администраторов
+        submit: Войти
+  a:
+    admin_profiles:
+      edit:
+        title: Редактирование профиля
+      form:
+        main_info: Основная информация
+      notices:
+        update: Профиль успешно обновлен
   users:
     form:
       submit: Отправить приглашение
@@ -396,6 +469,16 @@ ru:
       defaults:
         password: Пароль
         password_confirmation: Подтверждение пароля
+      admin:
+        email: Эл. ящик
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+      admin_profile:
+        first_name: Имя
+        last_name: Фамилия
+        middle_name: Отчество
+        phone: Контактный телефон
+        admin: :activerecord.models.admin
       user:
         email: Эл. ящик
         password: Пароль

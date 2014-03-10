@@ -7,7 +7,6 @@ describe "User", :type => :feature do
   it "should access login page and sign in" do
     visit root_path
     click_on I18n.t('menu.sign_in')
-    save_and_open_page
     ### set email and invalid password
     fill_in I18n.t("simple_form.labels.user.email"), with: user.email
     fill_in I18n.t("simple_form.labels.user.password"), with: user.password + '123'

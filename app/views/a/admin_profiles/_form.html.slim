@@ -1,0 +1,11 @@
+= simple_form_for(@admin_profile, url: a_admin_profile_path) do |f|
+  = f.error_notification
+  .row
+    .col-sm-6
+      h3= t('.main_info')
+      = f.input :last_name
+      = f.input :first_name
+      = f.input :middle_name
+      = f.input :phone
+  .form-group
+    = f.button :submit, data: { disable_with: t('shared.please_wait')}

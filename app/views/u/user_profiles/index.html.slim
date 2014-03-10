@@ -15,7 +15,6 @@ table
     th Parent phone
     th
     th
-    th
 
   - @user_profiles.each do |user_profile|
     tr
@@ -32,8 +31,3 @@ table
       td = user_profile.parent_phone
       td = link_to 'Show', user_profile
       td = link_to 'Edit', edit_user_profile_path(user_profile)
-      td = link_to 'Destroy', user_profile, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New User profile', new_u_user_profile_path

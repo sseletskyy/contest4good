@@ -1,0 +1,39 @@
+p#notice = notice
+
+p
+  strong User:
+  = @admin_profile.admin
+p
+  strong First name:
+  = @admin_profile.first_name
+p
+  strong Middle name:
+  = @admin_profile.middle_name
+p
+  strong Last name:
+  = @admin_profile.last_name
+p
+  strong Born on:
+  = @admin_profile.born_on
+p
+  strong Address:
+  = @admin_profile.address
+p
+  strong School:
+  = @admin_profile.school
+p
+  strong Grade:
+  = @admin_profile.grade
+p
+  strong Phone:
+  = @admin_profile.phone
+p
+  strong Parent name:
+  = @admin_profile.parent_name
+p
+  strong Parent phone:
+  = @admin_profile.parent_phone
+
+= link_to 'Edit', edit_admin_profile_path(@admin_profile)
+'|
+= link_to 'Back', admin_profiles_path

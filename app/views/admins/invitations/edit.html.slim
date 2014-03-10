@@ -1,0 +1,22 @@
+h2
+  = t 'devise.invitations.edit.header'
+= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f|
+  = devise_error_messages!
+  = f.hidden_field :invitation_token
+  = f.simple_fields_for :admin_profile do |s|
+    .row
+      .col-sm-6
+        h3= t('a.admin_profiles.form.main_info')
+        = s.input :last_name
+        = s.input :first_name
+        = s.input :middle_name
+        = s.input :phone
+  .row
+    .col-sm-6
+      = f.input :password
+      = f.input :password_confirmation
+    .col-sm-6
+
+
+  .form-group
+    = f.submit t("devise.invitations.edit.submit_button"), data: { disable_with: t('shared.please_wait')}

@@ -1,4 +1,10 @@
 Contest4good::Application.routes.draw do
+  devise_for :admins,
+             :controllers => {:sessions => "a/sessions", :invitations => "a/invitations"},
+             :path => 'a',
+             :path_names => {:sign_in => 'login', :sign_out => 'logout'},
+             skip: [:registration, :password]
+
   devise_for :users,
              :controllers => {:sessions => "u/sessions", :invitations => "u/invitations"},
              :path => 'u',
@@ -7,6 +13,11 @@ Contest4good::Application.routes.draw do
 
   namespace :u do
     resource :user_profile, :controller => "user_profiles", only: [:edit, :update, :show]
+    get '/', to: 'home#index', as: 'home'
+  end
+
+  namespace :a do
+    resource :admin_profile, :controller => "admin_profiles", only: [:edit, :update, :show]
     get '/', to: 'home#index', as: 'home'
   end
 

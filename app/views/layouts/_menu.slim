@@ -17,6 +17,18 @@ nav.navbar.navbar-default role="navigation"
         = link_to t('menu.home'), root_path
     ul.nav.navbar-nav.navbar-right
       li
-        = link_to t('menu.sign_up'), new_user_invitation_path
+        = link_to new_user_invitation_path do
+          i.glyphicon.glyphicon-plus
+          '
+          =t('menu.sign_up')
       li
-        = link_to t('menu.sign_in'), new_user_session_path
+        = link_to new_user_session_path do
+          i.glyphicon.glyphicon-user
+          '
+          =t('menu.sign_in')
+
+      li
+        = link_to new_admin_session_path do
+          i.glyphicon.glyphicon-wrench
+          '
+          = t('menu.admin_sign_in')

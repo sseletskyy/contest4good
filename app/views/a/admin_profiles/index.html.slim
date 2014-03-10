@@ -1,0 +1,33 @@
+h1 Listing admin_profiles
+
+table
+  tr
+    th User
+    th First name
+    th Middle name
+    th Last name
+    th Born on
+    th Address
+    th School
+    th Grade
+    th Phone
+    th Parent name
+    th Parent phone
+    th
+    th
+
+  - @admin_profiles.each do |admin_profile|
+    tr
+      td = admin_profile.admin
+      td = admin_profile.first_name
+      td = admin_profile.middle_name
+      td = admin_profile.last_name
+      td = admin_profile.born_on
+      td = admin_profile.address
+      td = admin_profile.school
+      td = admin_profile.grade
+      td = admin_profile.phone
+      td = admin_profile.parent_name
+      td = admin_profile.parent_phone
+      td = link_to 'Show', admin_profile
+      td = link_to 'Edit', edit_admin_profile_path(admin_profile)

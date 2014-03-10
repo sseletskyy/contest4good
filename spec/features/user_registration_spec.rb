@@ -8,7 +8,7 @@ describe "User Registration", :type => :feature do
 
   it "can access registration" do
     visit root_path
-    click_link "Регистрация"
+    click_link I18n.t('menu.sign_up')
     click_on I18n.t("devise.invitations.new.submit_button")
     expect(page).to have_content I18n.t("activerecord.errors.models.user.attributes.email.blank")
     fill_in I18n.t("simple_form.labels.user.email"), with: @wrong_email
