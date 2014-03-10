@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  #rolify
   # Include default devise modules. Others available are:
   # :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
