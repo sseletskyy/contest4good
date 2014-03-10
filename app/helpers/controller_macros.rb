@@ -1,6 +1,7 @@
 module ControllerMacros
   def login_admin
     before(:each) do
+      Contest4good::create_roles
       @request.env['devise.mapping'] = Devise.mappings[:admin]
       @current_admin = FactoryGirl.create(:admin)
       sign_in @current_admin # Using factory girl as an example

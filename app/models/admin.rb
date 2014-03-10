@@ -17,4 +17,6 @@ class Admin < ActiveRecord::Base
   validates :password, length: {minimum: 6, maximum: 120}, on: :update, allow_blank: true
   validates :password, length: {minimum: 6, maximum: 120}, on: :create, allow_blank: true
 
+  #validates :role_ids, presence: true, on: :create
+
 end

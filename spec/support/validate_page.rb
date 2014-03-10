@@ -10,12 +10,9 @@ module ValidatePage
 
   def login_as_admin
     unless @_admin
+      Contest4good::create_roles
       @_admin = FactoryGirl.create(:user)
-      role = Role.new
-      role.name = :admin
-      role.save
-      @_admin.roles << role
-      @_admin.save
+      @_admin.add_role :admin
     end
     login_as(@_admin, scope: :user, run_callbacks: false)
   end

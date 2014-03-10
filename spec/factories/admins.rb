@@ -7,5 +7,6 @@ FactoryGirl.define do
     password_confirmation "Abc123"
     admin_profile
     confirmed_at {Time.zone.now}
+    role_ids [1]
   end
 end

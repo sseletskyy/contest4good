@@ -5,6 +5,7 @@ describe "Admin", :type => :feature do
   let(:admin) { fg.create(:admin) }
 
   it "should access login page and sign in" do
+    Contest4good::create_roles
     #visit a_home_path
     visit root_path
     click_on I18n.t('menu.admin_sign_in')

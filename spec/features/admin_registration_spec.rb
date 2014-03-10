@@ -6,14 +6,19 @@ describe "Admin Registration", :type => :feature do
     @wrong_email = 'wrong_email'
     @correct_email = 'correct_emai.l@ab.ua'
     @admin = create_current_admin
+
     visit a_home_path
     click_link I18n.t('menu.invite')
+    ### check error email is empty
     click_on I18n.t("devise.invitations.new.submit_button")
     expect(page).to have_content I18n.t("activerecord.errors.models.admin.attributes.email.blank")
+
+    ### fill wrong email
     fill_in I18n.t("simple_form.labels.admin.email"), with: @wrong_email
     click_on I18n.t("devise.invitations.new.submit_button")
     expect(page).to have_content I18n.t("activerecord.errors.models.admin.attributes.email.invalid")
 
+    ### fill correct email
     fill_in I18n.t("simple_form.labels.admin.email"), with: @correct_email
     click_on I18n.t("devise.invitations.new.submit_button")
     expect(page).to have_content I18n.t("devise.invitations.send_instructions", email: @correct_email)
@@ -58,6 +63,7 @@ describe "Admin Registration", :type => :feature do
 
     # check confirmation password are not aceepted
     click_on I18n.t('devise.invitations.edit.submit_button')
+
     expect(page).to have_content I18n.t('errors.messages.confirmation', attribute: I18n.t('simple_form.labels.admin.password'))
     current_path.should == admin_invitation_path
 

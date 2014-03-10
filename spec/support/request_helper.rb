@@ -4,6 +4,7 @@ include Warden::Test::Helpers
 module RequestHelper
 
   def create_current_admin
+    Contest4good::create_roles
     admin = fg.create :admin
     login_as(admin, :scope => :admin, :run_callbacks => true)
     admin

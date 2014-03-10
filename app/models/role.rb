@@ -3,4 +3,6 @@ class Role < ActiveRecord::Base
   belongs_to :resource, :polymorphic => true
   
   scopify
+
+  scope :general, -> { where(name: Contest4good::ROLES_GENERAL) }
 end

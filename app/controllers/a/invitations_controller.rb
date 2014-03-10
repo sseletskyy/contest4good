@@ -4,12 +4,26 @@ class A::InvitationsController < Devise::InvitationsController
   # GET /a/invitation/new
   def new
     self.resource = resource_class.new
-    #resource.build_admin_profile
     render :new
   end
 
+  #def create
+  #  puts "----"
+  #  attributes = params[:admin] #invite_params
+  #  #puts params[:admin].inspect
+  #  #puts attributes.inspect
+  #  self.resource = Admin.new(attributes)
+  #  if resource.save
+  #    resource.invite!(current_inviter)
+  #    set_flash_message :notice, :send_instructions, :email => self.resource.email if self.resource.invitation_sent_at
+  #    respond_with resource, :location => after_invite_path_for(resource)
+  #  else
+  #    respond_with_navigational(resource) { render :new }
+  #  end
+  #end
+
   def update
-    attributes = params[:admin]
+    attributes = params[:admin] #update_resource_params
     original_token = attributes.delete(:invitation_token)
     self.resource = Admin.find_by_invitation_token(original_token, false)
     if resource.errors.empty?
