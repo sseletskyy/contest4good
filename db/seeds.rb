@@ -21,3 +21,15 @@ admin.add_role :admin
 puts 'admin: ' << "#{admin.admin_profile.first_name} #{admin.admin_profile.last_name}"
 puts admin.email
 puts admin.password
+
+unless Rails.env.production?
+  5.times do
+    admin = fg.create(:admin)
+    admin.accept_invitation!
+    puts 'admin: ' << "#{admin.admin_profile.first_name} #{admin.admin_profile.last_name}"
+    puts admin.email
+    puts admin.password
+
+  end
+
+end

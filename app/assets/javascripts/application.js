@@ -13,10 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require turbolinks
 //= require bootstrap
-//= require jquery.ui.core
-//= require jquery.ui.datepicker
-//= require jquery.ui.dialog
-//= require jquery.ui.tooltip
+//= require autocomplete-rails
 //= require_tree .

@@ -19,6 +19,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'rails3-jquery-autocomplete'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -34,7 +35,7 @@ gem 'devise_invitable'
 gem 'figaro'
 gem 'rolify'
 gem 'simple_form', '>= 3.0.0.rc'
-gem 'nokogiri'  # is an HTML, XML, SAX, and Reader parser. Among Nokogiri's many features is the ability to search documents via XPath or CSS3 selectors
+gem 'nokogiri' # is an HTML, XML, SAX, and Reader parser. Among Nokogiri's many features is the ability to search documents via XPath or CSS3 selectors
 gem 'json'
 gem 'protected_attributes'
 gem 'slim-rails'
@@ -61,6 +62,7 @@ group :development do
   gem 'rb-fsevent', :require => false
   gem 'rb-inotify', :require => false
   gem 'thin'
+  gem 'rack-mini-profiler' # displays time spent on requests
 end
 group :development, :test do
   gem 'pry-rails'

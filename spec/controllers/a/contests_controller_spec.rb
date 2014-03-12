@@ -25,7 +25,12 @@ describe A::ContestsController do
   # adjust the attributes here as well.
   login_admin
 
-  let(:valid_attributes) { {"name" => "MyString"} }
+  let(:valid_attributes) { {
+      name: 'MyString',
+      starts_at: Time.now.beginning_of_day,
+      ends_at: Time.now.beginning_of_day+8.hours,
+      regulations: 'abc'
+  } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in

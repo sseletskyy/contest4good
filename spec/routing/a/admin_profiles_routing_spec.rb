@@ -15,6 +15,10 @@ describe A::AdminProfilesController do
       put("/a/admin_profile").should route_to("a/admin_profiles#update")
     end
 
+    it "routes to #autocomplete_admin_profile_last_name" do
+      get("/a/admin_profile/autocomplete_admin_profile_last_name").should route_to("a/admin_profiles#autocomplete_admin_profile_last_name")
+    end
+
     #it "routes to #destroy" do
     #  delete("/a/admin_profiles/1").should route_to("a/admin_profiles#destroy", :id => "1")
     #end

@@ -3,16 +3,16 @@
 FactoryGirl.define do
   factory :user_profile, :class => 'UserProfile' do
     user nil
-    first_name "Вася"
-    middle_name "Петевич"
-    last_name "Путров"
+    first_name { Faker::Name.first_name }
+    middle_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
     born_on "1998-01-02"
-    address "Приморский 15"
-    school "33"
+    address { Faker::Address.street_address }
+    school { Faker::Number.number(2) }
     grade "9Б"
-    phone "7332232"
-    parent_name "Василиса Микулишна"
-    parent_phone "101"
+    phone { Faker::Number.number(7) }
+    parent_name { Faker::Name.name }
+    parent_phone { Faker::Number.number(7) }
     terms true
   end
 end

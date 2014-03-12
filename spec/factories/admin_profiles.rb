@@ -3,9 +3,9 @@
 FactoryGirl.define do
   factory :admin_profile do
     admin nil
-    first_name "Иван"
-    middle_name "Иваныч"
-    last_name "Горбунков"
-    phone "7332232"
+    first_name { Faker::Name.first_name }
+    middle_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    phone { Faker::Number.number(7) }
   end
 end

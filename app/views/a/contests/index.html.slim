@@ -8,7 +8,7 @@ table
     th Regulations
     th
     th
-    th
+    /th
 
   - @contests.each do |contest|
     tr
@@ -16,9 +16,9 @@ table
       td = contest.starts_at
       td = contest.ends_at
       td = contest.regulations
-      td = link_to 'Show', contest
-      td = link_to 'Edit', edit_contest_path(contest)
-      td = link_to 'Destroy', contest, data: {:confirm => 'Are you sure?'}, :method => :delete
+      td = link_to 'Show', a_contest_path(contest)
+      td = link_to 'Edit', edit_a_contest_path(contest)
+      /td = link_to 'Destroy', contest, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 

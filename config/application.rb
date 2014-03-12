@@ -42,7 +42,7 @@ module Contest4good
 
     I18n.config.enforce_available_locales = true
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
-    config.i18n.available_locales = [:ru, :'uk-UA']
+    config.i18n.available_locales = [:ru, :'uk-UA', :en]
     config.i18n.default_locale = :ru
 
     config.active_record.time_zone_aware_attributes = false

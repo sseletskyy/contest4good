@@ -6,4 +6,10 @@ describe "AdminProfiles" do
     get edit_a_admin_profile_path
     response.status.should be(200)
   end
+
+  it 'AUTOCOMPLETE' do
+    create_current_admin
+    get autocomplete_admin_profile_last_name_a_admin_profile_path
+    response.status.should be(200)
+  end
 end

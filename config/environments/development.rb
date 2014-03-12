@@ -10,7 +10,7 @@ Contest4good::Application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
@@ -26,16 +26,17 @@ Contest4good::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = {:host => 'localhost:3000'}
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => 'olympiada-8b12e93b9a7835af',
-    :password => 'b58677974d26e185',
-    :address => 'mailtrap.io',
-    :port => '2525',
-    :authentication => :plain
+      :user_name => 'olympiada-8b12e93b9a7835af',
+      :password => 'b58677974d26e185',
+      :address => 'mailtrap.io',
+      :port => '2525',
+      :authentication => :plain
   }
   ENV['SYSTEM_EMAIL'] ||= 'sseletskyy@gmail.com'
 
+  Faker::Config.locale = :en
 end

@@ -44,6 +44,24 @@ describe A::AdminProfilesController do
     end
   end
 
+  describe "GET autocomplete" do
+    it "returns found name" do
+      admin_profile = @current_admin.admin_profile
+      get :autocomplete_admin_profile_last_name, {:term => admin_profile.last_name[0..2]}, valid_session
+      response.body.should eq("[{\"id\":\"1\",\"label\":\"#{admin_profile.last_name}\",\"value\":\"#{admin_profile.last_name}\"}]")
+    end
+    it "returns found names" do
+      a_p = @current_admin.admin_profile
+      # create another admin and set the same last name
+      another_admin = fg.create(:admin)
+      a_p2 = another_admin.admin_profile
+      a_p2.last_name = a_p.last_name
+      a_p2.save!
+      get :autocomplete_admin_profile_last_name, {:term => a_p.last_name[0..2]}, valid_session
+      response.body.should eq("[{\"id\":\"#{a_p.id}\",\"label\":\"#{a_p.last_name}\",\"value\":\"#{a_p.last_name}\"},{\"id\":\"#{a_p2.id}\",\"label\":\"#{a_p2.last_name}\",\"value\":\"#{a_p2.last_name}\"}]")
+    end
+  end
+
   describe "GET edit" do
     it "assigns the requested admin_profile as @admin_profile" do
       admin_profile = @current_admin.admin_profile

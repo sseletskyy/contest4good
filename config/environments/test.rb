@@ -34,4 +34,7 @@ Contest4good::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  Faker::Config.locale = :en
+
 end
