@@ -6,7 +6,8 @@
       = f.input :starts_at
       = f.input :ends_at
       = f.input :regulations
-      = f.autocomplete_field :committee_head, autocomplete_admin_profile_last_name_a_admin_profile_path
+      = f.input :role_ids, collection: AdminProfile.all, label_method: lambda {|t| t.full_name}, checked: ''
+
   .row
     .col-sm-6
       = f.button :submit, data: { disable_with: t('shared.please_wait')}

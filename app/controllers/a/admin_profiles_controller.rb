@@ -1,7 +1,11 @@
 class A::AdminProfilesController < A::ApplicationController
-  autocomplete :admin_profile, :last_name # jquery autocomplete
-
   before_action :set_admin_profile, only: [:show, :edit, :update, :destroy]
+
+  # GET a/contests
+  # GET a/contests.json
+  def index
+    @admin_profiles = AdminProfile.all
+  end
 
   # GET /a/admin_profile
   # GET /a/admin_profile.json

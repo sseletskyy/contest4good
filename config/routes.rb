@@ -18,9 +18,8 @@ Contest4good::Application.routes.draw do
   end
 
   namespace :a do
-    resource :admin_profile, :controller => "admin_profiles", only: [:edit, :update, :show] do
-      get :autocomplete_admin_profile_last_name, :on => :collection
-    end
+    resource :admin_profile, :controller => "admin_profiles", only: [:edit, :update, :show]
+    resources :admin_profiles, :controller => "admin_profiles", only: [:index]
     get '/', to: 'home#index', as: 'home'
     resources :contests
   end

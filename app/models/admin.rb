@@ -9,7 +9,7 @@ class Admin < ActiveRecord::Base
   attr_accessible :password, :password_confirmation, :remember_me, :role_ids, :invitation_token,
                   :email
 
-  has_one :admin_profile
+  has_one :admin_profile, dependent: :destroy
   accepts_nested_attributes_for :admin_profile
 
   CUSTOM_VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

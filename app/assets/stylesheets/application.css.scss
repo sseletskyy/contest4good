@@ -13,3 +13,12 @@
  *= require jquery.ui.all
  *= require_tree .
  */
+
+/* for gem */
+.profiler-results {
+  margin-top: 53px;
+
+  .profiler-result {
+    border-top: solid 1px black;
+  }
+}
