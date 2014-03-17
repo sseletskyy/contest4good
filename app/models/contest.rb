@@ -17,7 +17,7 @@ class Contest < ActiveRecord::Base
   end
 
   def committee_head_ids=(ids)
-    @committee_head_ids = ids
+    @committee_head_ids = ids.is_a?(Integer) && ids > 0 ? [ids] : ids
   end
 
   # Custom getter/setter for role 'jury_head'
@@ -26,7 +26,7 @@ class Contest < ActiveRecord::Base
   end
 
   def jury_head_ids=(ids)
-    @jury_head_ids = ids
+    @jury_head_ids = ids.is_a?(Integer) && ids > 0 ? [ids] : ids
   end
 
   private

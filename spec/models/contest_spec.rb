@@ -21,7 +21,7 @@ describe Contest do
     contest = Contest.find contest.id
     contest.committee_head_ids.should eq([])
 
-    contest.committee_head_ids = [admin.id]
+    contest.committee_head_ids = admin.id
     contest.save
     contest = Contest.find contest.id
     contest.committee_head_ids.should eq([admin.id])

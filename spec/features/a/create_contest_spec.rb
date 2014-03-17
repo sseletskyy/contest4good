@@ -70,7 +70,6 @@ feature "Contest" do
           fill_correct_dates
           fill_regulations('regulation text')
           fill_jury_head(@jury)
-
           submit
           current_path.should == a_contests_path
           expect(page).to have_content I18n.t('errors.messages.blank')

@@ -26,7 +26,6 @@ class A::ContestsController < A::ApplicationController
   # POST a/contests.json
   def create
     @contest = Contest.new(contest_params)
-
     respond_to do |format|
       if @contest.save
         format.html { redirect_to a_contest_url(@contest), notice: I18n.t('a.contests.notices.create') }
@@ -55,13 +54,13 @@ class A::ContestsController < A::ApplicationController
 
   # DELETE /contests/1
   # DELETE /contests/1.json
-  def destroy
-    @contest.destroy
-    respond_to do |format|
-      format.html { redirect_to a_contests_url }
-      format.json { head :no_content }
-    end
-  end
+  #def destroy
+  #  @contest.destroy
+  #  respond_to do |format|
+  #    format.html { redirect_to a_contests_url }
+  #    format.json { head :no_content }
+  #  end
+  #end
 
   private
   # Use callbacks to share common setup or constraints between actions.
