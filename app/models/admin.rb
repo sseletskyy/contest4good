@@ -19,4 +19,16 @@ class Admin < ActiveRecord::Base
 
   #validates :role_ids, presence: true, on: :create
 
+  # fetch users by a specific role (and resource)
+  def self.by_role(role, resource = nil)
+    admins = joins(:roles).where({:roles => {:name => role}})
+    if resource
+      if resource.is_a? Class
+        admins = admins.where({:roles => {:resource_type => resource.name, :resource_id => nil}})
+      else
+        admins = admins.where({:roles => {:resource_type => resource.class.name, :resource_id => resource.id}})
+      end
+    end
+  end
+
 end

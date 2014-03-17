@@ -15,6 +15,7 @@ class A::ContestsController < A::ApplicationController
   # GET a/contests/new
   def new
     @contest = Contest.new
+    set_data_for_new_form
   end
 
   # GET a/contests/1/edit
@@ -31,6 +32,7 @@ class A::ContestsController < A::ApplicationController
         format.html { redirect_to a_contest_url(@contest), notice: I18n.t('a.contests.notices.create') }
         format.json { render action: 'show', status: :created, location: @contest }
       else
+        set_data_for_new_form
         format.html { render action: 'new' }
         format.json { render json: @contest.errors, status: :unprocessable_entity }
       end
@@ -69,6 +71,10 @@ class A::ContestsController < A::ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def contest_params
-    params.require(:contest).permit(:name, :starts_at, :ends_at, :regulations)
+    params.require(:contest).permit(:name, :starts_at, :ends_at, :regulations, :committee_head_ids, :jury_head_ids)
+  end
+
+  def set_data_for_new_form
+    @admins = Admin.all
   end
 end
