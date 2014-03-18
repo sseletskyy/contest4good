@@ -90,19 +90,35 @@ feature "Contest" do
       context "contest" do
         background do
           visit new_a_contest_path
-        end
-
-        scenario 'should be created' do
           fill_name('contest name')
           fill_correct_dates
           fill_regulations('regulation text')
           fill_committee_head(@committee)
           fill_jury_head(@jury)
-
-
           submit
+        end
+
+        scenario 'should be created' do
           expect(page).to have_content I18n.t('a.contests.notices.create')
           current_path.should == a_contest_path(Contest.last)
+        end
+
+        scenario 'email should be sent to committee_head' do
+          emails_to_test = [
+              {email: @committee.email, role: Contest4good::ROLE_COMMITTEE_HEAD},
+              {email: @jury.email, role: Contest4good::ROLE_JURY_HEAD}
+          ]
+
+          emails_to_test.each do |item|
+            puts "\t~ Checking email #{item[:email]} and role #{item[:role]}"
+            email = open_email(item[:email])
+            mail_body = email.body.encoded
+            #puts mail_body
+            expect(mail_body).to have_content I18n.t('mailer.contest.invite_mail_subject')
+            translated_role = I18n.t(item[:role], scope: 'simple_form.options.admin.roles')
+            your_role_is_html = ActionView::Base.full_sanitizer.sanitize(I18n.t('mailer.contest.your_role_is_html', role: translated_role, contest: Contest.last.name))
+            expect(mail_body).to have_content your_role_is_html
+          end
         end
       end
 

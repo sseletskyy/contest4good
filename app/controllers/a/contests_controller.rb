@@ -28,6 +28,7 @@ class A::ContestsController < A::ApplicationController
     @contest = Contest.new(contest_params)
     respond_to do |format|
       if @contest.save
+        send_notifications_on_create
         format.html { redirect_to a_contest_url(@contest), notice: I18n.t('a.contests.notices.create') }
         format.json { render action: 'show', status: :created, location: @contest }
       else
@@ -75,5 +76,18 @@ class A::ContestsController < A::ApplicationController
 
   def set_data_for_new_form
     @admins = Admin.all
+  end
+
+  def send_notifications_on_create
+    admins = Admin.where(id: @contest.committee_head_ids)
+    admins.each do |admin|
+      A::ContestMailer.send_ticket(@contest, admin, Contest4good::ROLE_COMMITTEE_HEAD).deliver
+    end
+
+    admins = Admin.where(id: @contest.jury_head_ids)
+    admins.each do |admin|
+      A::ContestMailer.send_ticket(@contest, admin, Contest4good::ROLE_JURY_HEAD).deliver
+    end
+
   end
 end
