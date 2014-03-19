@@ -1,14 +1,18 @@
 require 'spec_helper'
 
-feature "Create Contest" do
+feature "Update Contest" do
+
+  background do
+    @contest = fg.create(:contest)
+  end
 
   context "when registered as user" do
     background do
       @user = create_current_user
     end
 
-    scenario 'new form is not available' do
-      visit new_a_contest_path
+    scenario 'edit form is not available' do
+      visit edit_a_contest_path(@contest)
       expect(page).to have_content I18n.t('devise.failure.unauthenticated')
       current_path.should == new_admin_session_path
     end
@@ -17,60 +21,38 @@ feature "Create Contest" do
   context "when registered as admin" do
     background do
       @admin = create_current_admin
-      @committee = fg.create(:committee_head)
-      @jury = fg.create(:jury_head)
+      @committee_vice = fg.create(:committee_vice)
+      @jury_judge = fg.create(:jury_judge)
+
     end
     context "when admin has role admin" do
       background do
         @admin.add_role Contest4good::ROLE_ADMIN
+        visit edit_a_contest_path(@contest)
       end
 
-      context "new form is available" do
-        background do
-          visit a_home_path
-          click_on I18n.t('a.home.index.create_contest')
-        end
-
-        scenario "from home_path" do
-          current_path.should == new_a_contest_path
-        end
+      scenario "edit form is available" do
+        current_path.should == edit_a_contest_path(@contest)
       end
 
       context "check for fields in the form" do
-        background do
-          visit new_a_contest_path
-        end
-        scenario 'committee_head should be available' do
-          expect { find_field('contest_committee_head_ids') }.to be_true
-        end
-
-        scenario 'jury_head should be available' do
-          expect { find_field('contest_jury_head_ids') }.to be_true
-        end
-
-        scenario 'committee_vice should NOT be available' do
-          expect { find_field('contest_committee_vice_ids') }.to raise_error(Capybara::ElementNotFound)
-        end
-
-        scenario 'jury_judge should NOT be available' do
-          expect { find_field('contest_jury_judge_ids') }.to raise_error(Capybara::ElementNotFound)
+        scenario 'all elements should be available' do
+          %w(name starts_at end_at regulations committee_head_ids jury_head_ids committee_vice_ids jury_judge_ids).each do |field|
+            expect { find_field("contest_#{field}") }.to be_true
+          end
         end
       end
 
       context "validate required field" do
-        background do
-          visit new_a_contest_path
-        end
-
         scenario "name" do
           fill_name('')
           fill_correct_dates
           fill_regulations('regulation text')
-          fill_committee_head(@committee)
-          fill_jury_head(@jury)
+          fill_committee_vice(@committee_vice)
+          fill_jury_judge(@jury_judge)
 
           submit
-          current_path.should == a_contests_path
+          current_path.should == a_contest_path(@contest)
           expect(page).to have_content I18n.t('errors.messages.blank')
         end
 
@@ -78,56 +60,57 @@ feature "Create Contest" do
           fill_name('contest name')
           fill_correct_dates
           fill_regulations('')
-          fill_committee_head(@committee)
-          fill_jury_head(@jury)
+          fill_committee_vice(@committee_vice)
+          fill_jury_judge(@jury_judge)
 
           submit
-          current_path.should == a_contests_path
+          current_path.should == a_contest_path(@contest)
           expect(page).to have_content I18n.t('errors.messages.blank')
         end
 
-        scenario "committee_head" do
+        scenario "committee_vice" do
           fill_name('contest name')
           fill_correct_dates
           fill_regulations('regulation text')
-          fill_jury_head(@jury)
+          fill_jury_judge(@jury_judge)
           submit
-          current_path.should == a_contests_path
+          current_path.should == a_contest_path(@contest)
           expect(page).to have_content I18n.t('errors.messages.blank')
         end
 
-        scenario "jury_head" do
+        scenario "jury_judge" do
           fill_name('contest name')
           fill_correct_dates
           fill_regulations('regulation text')
-          fill_committee_head(@committee)
+          fill_committee_vice(@committee_vice)
 
           submit
-          current_path.should == a_contests_path
+          current_path.should == a_contest_path(@contest)
           expect(page).to have_content I18n.t('errors.messages.blank')
         end
       end
 
       context "contest" do
         background do
-          visit new_a_contest_path
+          #save_and_open_page
           fill_name('contest name')
           fill_correct_dates
           fill_regulations('regulation text')
-          fill_committee_head(@committee)
-          fill_jury_head(@jury)
+          fill_jury_judge(@jury_judge)
+          fill_committee_vice(@committee_vice)
           submit
+          #save_and_open_page
         end
 
-        scenario 'should be created' do
+        scenario 'should be updated' do
           expect(page).to have_content I18n.t('a.contests.notices.create')
-          current_path.should == a_contest_path(Contest.last)
+          current_path.should == a_contests_path
         end
 
-        scenario 'email should be sent to committee_head' do
+        scenario 'email should be sent to committee_vice' do
           emails_to_test = [
-              {email: @committee.email, role: Contest4good::ROLE_COMMITTEE_HEAD},
-              {email: @jury.email, role: Contest4good::ROLE_JURY_HEAD}
+              {email: @committee_vice.email, role: Contest4good::ROLE_COMMITTEE_VICE},
+              {email: @jury_judge.email, role: Contest4good::ROLE_JURY_JUDGE}
           ]
 
           emails_to_test.each do |item|
@@ -143,6 +126,10 @@ feature "Create Contest" do
         end
       end
 
+      # TODO context "when admin has role committee_head" do
+      # TODO context "when admin has role committee_vice" do
+      # TODO context "when admin has role jury_head" do
+      # TODO context "when admin has role jury_judge" do
 
     end
 
@@ -150,7 +137,7 @@ feature "Create Contest" do
 
 
   def submit
-    click_on I18n.t('helpers.submit.create', model: I18n.t('activerecord.models.contest'))
+    click_on I18n.t('helpers.submit.update', model: I18n.t('activerecord.models.contest'))
   end
 
   def fill_name(value='')
@@ -175,11 +162,20 @@ feature "Create Contest" do
     select("00", from: "contest_ends_at_5i")
   end
 
-  def fill_committee_head(committee)
-    select(committee.admin_profile.full_name, from: "contest_committee_head_ids")
+  def fill_committee_head(admin)
+    select(admin.admin_profile.full_name, from: "contest_committee_head_ids")
   end
 
-  def fill_jury_head(jury)
-    select(jury.admin_profile.full_name, from: "contest_jury_head_ids")
+  def fill_jury_head(admin)
+    select(admin.admin_profile.full_name, from: "contest_jury_head_ids")
+  end
+
+  def fill_committee_vice(admin)
+    select(admin.admin_profile.full_name, from: "contest_committee_vice_ids")
+  end
+
+  def fill_jury_judge(admin)
+    #unselect("", from: "contest_jury_judge_ids", exact: false)
+    select(admin.admin_profile.full_name, from: "contest_jury_judge_ids", exact: false)
   end
 end

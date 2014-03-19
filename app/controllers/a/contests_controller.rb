@@ -20,6 +20,7 @@ class A::ContestsController < A::ApplicationController
 
   # GET a/contests/1/edit
   def edit
+    set_data_for_edit_form
   end
 
   # POST a/contests
@@ -28,7 +29,6 @@ class A::ContestsController < A::ApplicationController
     @contest = Contest.new(contest_params)
     respond_to do |format|
       if @contest.save
-        send_notifications_on_create
         format.html { redirect_to a_contest_url(@contest), notice: I18n.t('a.contests.notices.create') }
         format.json { render action: 'show', status: :created, location: @contest }
       else
@@ -44,9 +44,10 @@ class A::ContestsController < A::ApplicationController
   def update
     respond_to do |format|
       if @contest.update(contest_params)
-        format.html { redirect_to a_contest_url(@contest), notice: I18n.t('a.contests.notices.create') }
+        format.html { redirect_to a_contests_url, notice: I18n.t('a.contests.notices.create') }
         format.json { head :no_content }
       else
+        set_data_for_edit_form
         format.html { render action: 'edit' }
         format.json { render json: @contest.errors, status: :unprocessable_entity }
       end
@@ -71,23 +72,45 @@ class A::ContestsController < A::ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def contest_params
-    params.require(:contest).permit(:name, :starts_at, :ends_at, :regulations, :committee_head_ids, :jury_head_ids)
+    # TODO set case based on rights
+    # all for admin
+    # only vice for committee_head
+    # only judge for jury_head
+    # etc
+    params.require(:contest).permit(:name, :starts_at, :ends_at, :regulations, :committee_head_ids, :jury_head_ids, :committee_vice_ids, jury_judge_ids: [])
   end
 
   def set_data_for_new_form
     @admins = Admin.all
   end
 
-  def send_notifications_on_create
-    admins = Admin.where(id: @contest.committee_head_ids)
-    admins.each do |admin|
-      A::ContestMailer.send_ticket(@contest, admin, Contest4good::ROLE_COMMITTEE_HEAD).deliver
-    end
-
-    admins = Admin.where(id: @contest.jury_head_ids)
-    admins.each do |admin|
-      A::ContestMailer.send_ticket(@contest, admin, Contest4good::ROLE_JURY_HEAD).deliver
-    end
-
+  def set_data_for_edit_form
+    @admins = Admin.all
   end
+
+  #def send_notifications_on_create
+  #  admins = Admin.where(id: @contest.committee_head_ids)
+  #  admins.each do |admin|
+  #    A::ContestMailer.send_ticket(@contest, admin, Contest4good::ROLE_COMMITTEE_HEAD).deliver
+  #  end
+  #
+  #  admins = Admin.where(id: @contest.jury_head_ids)
+  #  admins.each do |admin|
+  #    A::ContestMailer.send_ticket(@contest, admin, Contest4good::ROLE_JURY_HEAD).deliver
+  #  end
+  #
+  #end
+  #
+  #def send_notifications_on_update
+  #  admins = Admin.where(id: @contest.committee_head_ids)
+  #  admins.each do |admin|
+  #    A::ContestMailer.send_ticket(@contest, admin, Contest4good::ROLE_COMMITTEE_HEAD).deliver
+  #  end
+  #
+  #  admins = Admin.where(id: @contest.jury_head_ids)
+  #  admins.each do |admin|
+  #    A::ContestMailer.send_ticket(@contest, admin, Contest4good::ROLE_JURY_HEAD).deliver
+  #  end
+  #
+  #end
 end

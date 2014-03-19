@@ -405,6 +405,8 @@ ru:
     invite: Пригласить
   shared:
     back: Назад
+    back2list: Назад к списку
+    edit: Редактировать
     please_wait: Подождите
   admins:
     form:
@@ -440,6 +442,8 @@ ru:
     contests:
       new:
         title: Новый конкурс
+      edit:
+        title: Редактировать конкурс
       notices:
         create: Конкурс создан
         update: Конкурс обновлен
@@ -522,9 +526,11 @@ ru:
         user: :activerecord.models.user
         terms: Я согласен (согласна) с условиями пользовательского соглашения
     hints:
-       defaults:
-         username: 'Имя для авторизации'
-         password: 'Пожалуйста, без спец. символов'
+      contest:
+        jury_judge_ids: Зажмите клавишу Ctrl/Cmd для выбора нескольких вариантов
+      defaults:
+        username: 'Имя для авторизации'
+        password: 'Пожалуйста, без спец. символов'
     options:
       admin:
         roles:

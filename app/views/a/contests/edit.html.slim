@@ -1,8 +1,8 @@
-h1 Editing contest
+h1= t('.title')
 
 == render 'form'
 
-= link_to 'Show', @contest
+= link_to 'Show', a_contest_path(@contest)
 '|
 = link_to 'Back', a_contests_path, class: 'btn btn-default'
 

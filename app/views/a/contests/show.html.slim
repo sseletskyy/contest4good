@@ -1,18 +1,47 @@
 p#notice = notice
 
-p
-  strong Name:
-  = @contest.name
-p
-  strong Starts at:
-  = @contest.starts_at
-p
-  strong Ends at:
-  = @contest.ends_at
-p
-  strong Regulations:
-  = @contest.regulations
+.row
+  .col-lg-10
+    .row
+      .col-lg-3
+          p.pull-right
+            strong= t('simple_form.labels.contest.name')
+      .col-lg-3
+        = @contest.name
+    .row
+      .col-lg-3
+          p.pull-right
+            strong= t('simple_form.labels.contest.starts_at')
+      .col-lg-3
+        = @contest.starts_at
+    .row
+      .col-lg-3
+          p.pull-right
+            strong= t('simple_form.labels.contest.ends_at')
+      .col-lg-3
+        = @contest.ends_at
+    .row
+      .col-lg-3
+          p.pull-right
+            strong= t('simple_form.labels.contest.regulations')
+      .col-lg-3
+        = @contest.regulations
+    .row
+      .col-lg-3
+          p.pull-right
+            strong= t('simple_form.options.admin.roles.committee_head')
+      .col-lg-3
+        = @contest.committee_head_names.join(', ')
+    .row
+      .col-lg-3
+          p.pull-right
+            strong= t('simple_form.options.admin.roles.jury_head')
+      .col-lg-3
+        = @contest.jury_head_names.join(', ')
 
-= link_to 'Edit', edit_a_contest_path(@contest)
-'|
-= link_to 'Back', a_contests_path
+    .row
+      .col-lg-3
+          p.pull-right
+            = link_to t('shared.edit'), edit_a_contest_path(@contest), class: 'btn btn-info'
+      .col-lg-3
+        = link_to t('shared.back2list'), a_contests_path, class: 'btn btn-default'

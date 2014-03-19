@@ -1,4 +1,4 @@
-= simple_form_for(@contest, url: a_contests_path(@contest)) do |f|
+= simple_form_for(@contest, url: @contest.persisted? ? a_contest_path(@contest) : a_contests_path) do |f|
   = f.error_notification
   .row
     .col-sm-6
@@ -8,13 +8,37 @@
       = f.input :regulations, required: false
       - role_title = t(:committee_head, scope: 'simple_form.options.admin.roles')
       = f.input :committee_head_ids,
-              label: role_title,
-              collection: @admins,
-              label_method: lambda {|t| t.admin_profile.full_name},
-              value_method: lambda {|t| t.id},
-              required: false
+        label: role_title,
+        collection: @admins,
+        label_method: lambda {|t| t.admin_profile.full_name},
+        value_method: lambda {|t| t.id},
+        required: false
       - role_title = t(:jury_head, scope: 'simple_form.options.admin.roles')
-      = f.input :jury_head_ids, label: role_title, collection: @admins, label_method: lambda {|t| t.admin_profile.full_name}, value_method: lambda {|t| t.id}, required: false
+      = f.input :jury_head_ids,
+        label: role_title,
+        collection: @admins,
+        label_method: lambda {|t| t.admin_profile.full_name},
+        value_method: lambda {|t| t.id},
+        required: false
+
+      - if @contest.persisted?
+        - role_title = t(:committee_vice, scope: 'simple_form.options.admin.roles')
+        = f.input :committee_vice_ids,
+          label: role_title,
+          collection: @admins,
+          label_method: lambda {|t| t.admin_profile.full_name},
+          value_method: lambda {|t| t.id},
+          required: false
+
+      - if @contest.persisted?
+        - role_title = t(:jury_judge, scope: 'simple_form.options.admin.roles')
+        = f.input :jury_judge_ids,
+          label: role_title,
+          collection: @admins,
+          label_method: lambda {|t| t.admin_profile.full_name},
+          value_method: lambda {|t| t.id},
+          input_html: { multiple: true, size: 10 },
+          required: false
 
   .row
     .col-sm-6

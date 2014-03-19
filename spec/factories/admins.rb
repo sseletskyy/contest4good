@@ -18,7 +18,23 @@ FactoryGirl.define do
     confirmed_at { Time.zone.now }
   end
 
+  factory :committee_vice, class: Admin do
+    email { Faker::Internet.email }
+    password "Abc123"
+    password_confirmation "Abc123"
+    admin_profile
+    confirmed_at { Time.zone.now }
+  end
+
   factory :jury_head, class: Admin do
+    email { Faker::Internet.email }
+    password "Abc123"
+    password_confirmation "Abc123"
+    admin_profile
+    confirmed_at { Time.zone.now }
+  end
+
+  factory :jury_judge, class: Admin do
     email { Faker::Internet.email }
     password "Abc123"
     password_confirmation "Abc123"

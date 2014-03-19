@@ -35,6 +35,16 @@ describe A::ContestsController do
       committee_head_ids: committee_head.id.to_s,
       jury_head_ids: jury_head.id.to_s
   } }
+  let(:valid_attributes_for_update) { {
+      name: 'MyString',
+      starts_at: Time.now.beginning_of_day,
+      ends_at: Time.now.beginning_of_day+8.hours,
+      regulations: 'abc',
+      committee_head_ids: committee_head.id.to_s,
+      jury_head_ids: jury_head.id.to_s,
+      committee_vice_ids: committee_head.id.to_s,
+      jury_judge_ids: [jury_head.id.to_s]
+  } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -84,7 +94,6 @@ describe A::ContestsController do
         post :create, {:contest => valid_attributes}, valid_session
         assigns(:contest).should be_a(Contest)
         assigns(:contest).should be_persisted
-        p assigns(:contest).committee_head_ids
       end
 
       it "redirects to the created contest" do
@@ -124,14 +133,14 @@ describe A::ContestsController do
 
       it "assigns the requested contest as @contest" do
         contest = Contest.create! valid_attributes
-        put :update, {:id => contest.to_param, :contest => valid_attributes}, valid_session
+        put :update, {:id => contest.to_param, :contest => valid_attributes_for_update}, valid_session
         assigns(:contest).should eq(contest)
       end
 
       it "redirects to the contest" do
         contest = Contest.create! valid_attributes
-        put :update, {:id => contest.to_param, :contest => valid_attributes}, valid_session
-        response.should redirect_to(a_contest_url(contest))
+        put :update, {:id => contest.to_param, :contest => valid_attributes_for_update}, valid_session
+        response.should redirect_to(a_contests_url)
       end
     end
 
