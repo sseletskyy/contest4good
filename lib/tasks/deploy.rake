@@ -1,17 +1,6 @@
 #Deploy and rollback on Heroku in staging, production, dev and qa environments
 
-require 'tempfile'
-
-# for capturing error in 'git push'
-def capture_stderr
-  stderr = $stderr.dup
-  Tempfile.open 'stderr-redirect' do |temp|
-    $stderr.reopen temp.path, 'w+'
-    yield if block_given?
-    $stderr.reopen stderr
-    temp.read
-  end
-end
+require 'pty'
 
 %w[dev qa production staging].each do |app|
   desc "Deploy to #{app}"
@@ -56,12 +45,18 @@ namespace :deploy do
     current_branch += ":master" if current_branch != "master"
     puts "Deploying #{current_branch} to #{APP} ..."
     #captured_content = capture_stderr do
-    puts `git push -f git@heroku.com:#{APP}.git #{current_branch}`
-    #end
-    # display captured content
-    #puts captured_content.to_s
-    # stop furthe task chain in case of error (e.g. app name is invalid)
-    #raise "EXIT" if captured_content.to_s.match(/fatal/)
+    cmd = "git push -f git@heroku.com:#{APP}.git #{current_branch}"
+    begin
+      PTY.spawn(cmd) do |stdin, stdout, pid|
+        begin
+          stdin.each { |line| print line; abort('EXIT!') if line.match(/fatal:|Everything up-to-date/); }
+        rescue Errno::EIO
+          puts 'Errno:EIO error'
+        end
+      end
+    rescue PTY::ChildExited
+      puts 'PTY::ChildExited'
+    end
   end
 
   task :restart do
@@ -82,7 +77,7 @@ namespace :deploy do
   task :migrate do
     puts 'Running database migrations ...'
     Bundler.with_clean_env do
-      puts `heroku rake db:migrate --app #{APP}`
+      puts `heroku run rake db:migrate --app #{APP}`
     end
   end
 
