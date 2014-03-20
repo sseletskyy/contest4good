@@ -1,0 +1,13 @@
+= simple_form_for(@contest, url: a_contest_path(@contest)) do |f|
+  = f.error_notification
+  .row
+    .col-sm-6
+      = render 'show_general_fields'
+      = render 'show_committee_head'
+      = render 'show_committee_vice'
+      = render 'show_jury_head'
+      = render 'show_jury_judge'
+  .row
+    .col-sm-6
+      = f.button :submit, data: { disable_with: t('shared.please_wait')}
+hr

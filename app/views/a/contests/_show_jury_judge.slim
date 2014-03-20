@@ -1,0 +1,6 @@
+.row
+  .col-lg-3
+      p.pull-right
+        strong= t('simple_form.options.admin.roles.jury_judge')
+  .col-lg-3
+    = @contest.jury_judge_names.join(', ')

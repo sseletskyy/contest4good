@@ -1,0 +1,18 @@
+= simple_form_for(@contest, url: a_contest_path(@contest)) do |f|
+  = f.error_notification
+  .row
+    .col-sm-6
+      = render 'show_general_fields'
+      - role_title = t(:committee_vice, scope: 'simple_form.options.admin.roles')
+      = f.input :committee_vice_ids,
+        label: role_title,
+        collection: @admins,
+        label_method: lambda {|t| t.admin_profile.full_name},
+        value_method: lambda {|t| t.id},
+        required: false
+      = render 'show_jury_head'
+      = render 'show_jury_judge'
+  .row
+    .col-sm-6
+      = f.button :submit, data: { disable_with: t('shared.please_wait')}
+hr

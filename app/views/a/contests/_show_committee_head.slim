@@ -1,0 +1,6 @@
+.row
+  .col-lg-3
+      p.pull-right
+        strong= t('simple_form.options.admin.roles.committee_head')
+  .col-lg-3
+    = @contest.committee_head_names.join(', ')

@@ -10,5 +10,6 @@ class UserProfile < ActiveRecord::Base
 
   # this validation is on only for invitation/edit
   # it's off when updating user_profile
+  # TODO validates :terms, :acceptance => true
   validates :terms, presence: {message: I18n.t("errors.messages.accept_terms")}, on: :create
 end

@@ -7,7 +7,7 @@ FactoryGirl.define do
     password_confirmation "Abc123"
     admin_profile
     confirmed_at { Time.zone.now }
-    role_ids [1]
+    #role_ids [1]  # do not set default roles here!
   end
 
   factory :committee_head, class: Admin do
