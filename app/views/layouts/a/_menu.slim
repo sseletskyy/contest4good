@@ -24,7 +24,7 @@ nav.navbar.navbar-default role="navigation"
         a.dropdown-toggle data-toggle="dropdown" href="#"
           span.user-info
             i.glyphicon.glyphicon-user
-            small #{current_admin.admin_profile.first_name}
+            small #{current_admin.try(:admin_profile).try(:first_name) || '***'}
           b.caret
         ul.dropdown-menu
           li
