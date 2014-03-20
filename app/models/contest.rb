@@ -10,8 +10,10 @@ class Contest < ActiveRecord::Base
   validates :committee_head_ids, :jury_head_ids,
             presence: {message: I18n.t("errors.messages.blank")}, on: :create
 
-  validates :committee_head_ids, :jury_head_ids, :committee_vice_ids, :jury_judge_ids,
-            presence: {message: I18n.t("errors.messages.blank")}, on: :update
+  validates :committee_head_ids, presence: {message: I18n.t("errors.messages.blank")}, on: :update
+  validates :jury_head_ids, presence: {message: I18n.t("errors.messages.blank")}, on: :update
+  validate :committee_vice_ids_validation, on: :update
+  validate :jury_judge_ids_validation, on: :update
 
   after_save :save_role_committee_head
   after_save :save_role_committee_vice
@@ -30,6 +32,7 @@ class Contest < ActiveRecord::Base
     define_method("#{role}_ids") do
       # @committee_head_ids ||= Admin.by_role(:committee_head, self).map(&:id)
       instance_variable_get("@#{role}_ids") || instance_variable_set("@#{role}_ids", Admin.by_role(role.to_sym, self).map(&:id))
+      instance_variable_get("@#{role}_ids")
     end
 
     ### SETTER role_ids=
@@ -46,6 +49,7 @@ class Contest < ActiveRecord::Base
 
 
     ### role_names
+    ### return array of full names
     define_method("#{role}_names") do
       #names = []
       #Admin.where(id: committee_head_ids).each {|admin| names << admin.admin_profile.full_name}
@@ -71,21 +75,6 @@ class Contest < ActiveRecord::Base
   #def committee_head_names
   #  names = []
   #  Admin.where(id: committee_head_ids).each {|admin| names << admin.admin_profile.full_name}
-  #  names
-  #end
-  #
-  ## Custom getter/setter for role 'jury_head'
-  #def jury_head_ids
-  #  @jury_head_ids || Admin.by_role(:jury_head, self).map(&:id)
-  #end
-  #
-  #def jury_head_ids=(ids)
-  #  @jury_head_ids = ids.is_a?(Integer) && ids > 0 ? [ids] : ids
-  #end
-  #
-  #def jury_head_names
-  #  names = []
-  #  Admin.where(id: jury_head_ids).each {|admin| names << admin.admin_profile.full_name}
   #  names
   #end
 
@@ -133,5 +122,22 @@ class Contest < ActiveRecord::Base
   def save_role_jury_judge
     save_roles(:jury_judge)
   end
+
+  # validation method
+  # it allows empty until the field was set
+  def committee_vice_ids_validation
+    if [committee_vice_ids].flatten.empty? && self.committee_vice_ids_changed?
+      errors.add(:committee_vice_ids, I18n.t("errors.messages.blank"))
+    end
+  end
+
+  # validation method
+  # it allows empty until the field was set
+  def jury_judge_ids_validation
+    if [jury_judge_ids].flatten.empty? && self.jury_judge_ids_changed?
+      errors.add(:jury_judge_ids, I18n.t("errors.messages.blank"))
+    end
+  end
+
 
 end
