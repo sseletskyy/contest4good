@@ -2,7 +2,7 @@ h1= t('.title')
 
 == render contest_edit_form_name(@contest)
 
-= link_to 'Show', a_contest_path(@contest)
-'|
-= link_to 'Back', a_contests_path, class: 'btn btn-default'
+= link_to t('shared.show'), a_contest_path(@contest), class: 'btn btn-default'
+'
+= link_to t('shared.back2list'), a_contests_path, class: 'btn btn-default'
 

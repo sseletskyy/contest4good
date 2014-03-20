@@ -1,4 +1,5 @@
 class A::InvitationsController < Devise::InvitationsController
+  layout "a/application"
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   # GET /a/invitation/new

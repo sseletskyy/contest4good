@@ -1,25 +1,26 @@
-h1 Listing contests
+h1= t('.title')
 
-table
-  tr
-    th Name
-    th Starts at
-    th Ends at
-    th Regulations
-    th
-    th
-    /th
-
-  - @contests.each do |contest|
+-if @contests.size == 0
+ p= t 'shared.data_not_available'
+-else
+  table.table.table-striped.table-bordered
     tr
-      td = contest.name
-      td = contest.starts_at
-      td = contest.ends_at
-      td = contest.regulations
-      td = link_to 'Show', a_contest_path(contest)
-      td = link_to 'Edit', edit_a_contest_path(contest)
-      /td = link_to 'Destroy', contest, data: {:confirm => 'Are you sure?'}, :method => :delete
+      th= t('simple_form.labels.contest.name')
+      th= t('simple_form.labels.contest.starts_at')
+      th= t('simple_form.labels.contest.ends_at')
+      th
+      th
+      /th
+
+    - @contests.each do |contest|
+      tr
+        td = contest.name
+        td = contest.starts_at.strftime(I18n.t('date.datetime'))
+        td = contest.ends_at.strftime(I18n.t('date.datetime'))
+        td = link_to t('shared.show'), a_contest_path(contest)
+        td = link_to t('shared.edit'), edit_a_contest_path(contest)
+        /td = link_to 'Destroy', contest, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Contest', new_a_contest_path
+= link_to t('helpers.submit.create', model: t('activerecord.models.contest')), new_a_contest_path, class: 'btn btn-default'

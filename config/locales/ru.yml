@@ -127,6 +127,7 @@ ru:
     - окт.
     - нояб.
     - дек.
+    datetime: '%d.%m.%Y %H:%M'
     day_names:
     - воскресенье
     - понедельник
@@ -199,25 +200,25 @@ ru:
         one: больше %{count} года
         other: больше %{count} лет
       x_days:
-        few: ! '%{count} дня'
-        many: ! '%{count} дней'
-        one: ! '%{count} день'
-        other: ! '%{count} дня'
+        few: '%{count} дня'
+        many: '%{count} дней'
+        one: '%{count} день'
+        other: '%{count} дня'
       x_minutes:
-        few: ! '%{count} минуты'
-        many: ! '%{count} минут'
-        one: ! '%{count} минуту'
-        other: ! '%{count} минуты'
+        few: '%{count} минуты'
+        many: '%{count} минут'
+        one: '%{count} минуту'
+        other: '%{count} минуты'
       x_months:
-        few: ! '%{count} месяца'
-        many: ! '%{count} месяцев'
-        one: ! '%{count} месяц'
-        other: ! '%{count} месяца'
+        few: '%{count} месяца'
+        many: '%{count} месяцев'
+        one: '%{count} месяц'
+        other: '%{count} месяца'
       x_seconds:
-        few: ! '%{count} секунды'
-        many: ! '%{count} секунд'
-        one: ! '%{count} секундy'
-        other: ! '%{count} секунды'
+        few: '%{count} секунды'
+        many: '%{count} секунд'
+        one: '%{count} секундy'
+        other: '%{count} секунды'
     prompts:
       day: День
       hour: Часов
@@ -226,7 +227,7 @@ ru:
       second: Секунд
       year: Год
   errors:
-    format: ! '%{attribute} %{message}'
+    format: '%{attribute} %{message}'
     messages:
       accepted: нужно подтвердить
       accept_terms: нужно принять условия пользовательского соглашения
@@ -246,7 +247,7 @@ ru:
       not_an_integer: не является целым числом
       not_saved: Форма не сохранена
       odd: может иметь лишь четное значение
-      record_invalid: ! 'Возникли ошибки: %{errors}'
+      record_invalid: 'Возникли ошибки: %{errors}'
       taken: уже существует
       too_long:
         few: слишком большой длины (не может быть больше чем %{count} символа)
@@ -264,15 +265,15 @@ ru:
         one: неверной длины (может быть длиной ровно %{count} символ)
         other: неверной длины (может быть длиной ровно %{count} символа)
     template:
-      body: ! 'Проблемы возникли со следующими полями:'
+      body: 'Проблемы возникли со следующими полями:'
       header:
-        few: ! '%{model}: сохранение не удалось из-за %{count} ошибок'
-        many: ! '%{model}: сохранение не удалось из-за %{count} ошибок'
-        one: ! '%{model}: сохранение не удалось из-за %{count} ошибки'
-        other: ! '%{model}: сохранение не удалось из-за %{count} ошибки'
+        few: '%{model}: сохранение не удалось из-за %{count} ошибок'
+        many: '%{model}: сохранение не удалось из-за %{count} ошибок'
+        one: '%{model}: сохранение не удалось из-за %{count} ошибки'
+        other: '%{model}: сохранение не удалось из-за %{count} ошибки'
   helpers:
     select:
-      prompt: ! 'Выберите: '
+      prompt: 'Выберите: '
     submit:
       create: Создать %{model}
       submit: Сохранить %{model}
@@ -280,22 +281,22 @@ ru:
   number:
     currency:
       format:
-        delimiter: ! ' '
-        format: ! '%n %u'
+        delimiter: ' '
+        format: '%n %u'
         precision: 2
         separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: руб.
     format:
-      delimiter: ! ' '
+      delimiter: ' '
       precision: 3
       separator: ','
       significant: false
       strip_insignificant_zeros: false
     human:
       decimal_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           billion:
             few: миллиардов
@@ -329,7 +330,7 @@ ru:
         significant: false
         strip_insignificant_zeros: false
       storage_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           byte:
             few: байта
@@ -348,15 +349,15 @@ ru:
         delimiter: ''
   support:
     array:
-      last_word_connector: ! ' и '
-      two_words_connector: ! ' и '
-      words_connector: ! ', '
+      last_word_connector: ' и '
+      two_words_connector: ' и '
+      words_connector: ', '
   time:
     am: утра
     formats:
-      default: ! '%a, %d %b %Y, %H:%M:%S %z'
-      long: ! '%d %B %Y, %H:%M'
-      short: ! '%d %b, %H:%M'
+      default: '%a, %d %b %Y, %H:%M:%S %z'
+      long: '%d %B %Y, %H:%M'
+      short: '%d %b, %H:%M'
     pm: вечера
   devise:
     invitations:
@@ -397,6 +398,7 @@ ru:
       dear_admin: Уважаемый(ая) %{admin}
       your_role_is_html: Вам присвоена роль <strong>%{role}</strong> в конкурсе <strong>%{contest}</strong>
   menu:
+    contests: Конкурсы
     home: Главная
     sign_up: Регистрация
     sign_out: Выйти
@@ -406,8 +408,10 @@ ru:
   shared:
     back: Назад
     back2list: Назад к списку
+    data_not_available: Нет данных
     edit: Редактировать
     please_wait: Подождите
+    show: Показать
   admins:
     form:
       submit: Отправить приглашение
@@ -447,6 +451,9 @@ ru:
       notices:
         create: Конкурс создан
         update: Конкурс обновлен
+      index:
+        title: Список конкурсов
+
   users:
     form:
       submit: Отправить приглашение
