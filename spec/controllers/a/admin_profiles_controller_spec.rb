@@ -37,7 +37,6 @@ describe A::AdminProfilesController do
     it "returns all admin_profiles as json" do
       admin_profile = @current_admin.admin_profile
       get :index, {format: :json}, valid_session
-      p response.body.inspect
     end
   end
 
