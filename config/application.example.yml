@@ -9,3 +9,7 @@
 #
 # GMAIL_USERNAME: changeme
 # GMAIL_PASSWORD: changeme
+# WEB_CONCURRENCY: 1
+# MAX_THREADS: 1
+# PORT: 3000
+# RACK_ENV: development
